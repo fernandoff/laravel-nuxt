@@ -30,8 +30,9 @@ export type Users = Array<User>
 
 // PROFILE
 export interface Profile {
-  name: string
-  biography: string
+  name?: string
+  email?: string
+  biography?: string
 }
 
 export type Profiles = Array<Profile>

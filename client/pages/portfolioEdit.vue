@@ -21,6 +21,13 @@
 
           <div class="w-full px-1 md:w-1/2 mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="role">
+              Company Logo
+            </label>
+            <input v-model="currentPortfolio.company_logo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="company_logo" type="text" placeholder="Logo URL">
+          </div>
+
+          <div class="w-full px-1 mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
               Role
             </label>
             <input v-model="currentPortfolio.role" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="role" type="text" placeholder="Role">
@@ -30,7 +37,7 @@
             <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
               Description
             </label>
-            <input v-model="currentPortfolio.description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="description" type="text" placeholder="Description">
+            <textarea v-model="currentPortfolio.description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="description" type="text" placeholder="Description"></textarea>
           </div>
 
           <div class="w-full px-1 md:w-1/2 mb-4">
@@ -69,12 +76,9 @@
         @edit="editPortfolio"
         v-for="(portfolio, index) in portfolios"
         :key="index"
-        :portfolio="portfolio" />
+        :portfolio="portfolio"
+        :isAdmin="true"/>
     </ul>
-
-<!--    <div v-for="(portfolio, index) in portfolios" :key="index">-->
-<!--      {{index}} - {{portfolio.company}} - {{portfolio.role}} - {{portfolio.start}} - {{portfolio.end}}-->
-<!--    </div>-->
 
   </div>
 

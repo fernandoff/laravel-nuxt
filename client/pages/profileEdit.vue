@@ -1,6 +1,6 @@
 <template>
 
-  <div class="w-full max-w-md">
+  <div class="w-full max-w-xl">
 
     <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mt-4">
 
@@ -8,6 +8,10 @@
         <n-link to="/">
           <push-button theme="white" class="self-center"> Return Home </push-button>
         </n-link>
+      </div>
+
+      <div class="mb-4 flex justify-center">
+        <img class="w-12 h-12 bg-gray-300 rounded-full flex-shrink-0" src="https://avatars.dicebear.com/api/human/fer@gmail.com.svg" alt="avatar">
       </div>
 
       <div class="mb-4">
@@ -18,10 +22,17 @@
       </div>
 
       <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+          Email
+        </label>
+        <input v-model="profiles.email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="Email">
+      </div>
+
+      <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="biography">
           Biography
         </label>
-        <textarea v-model="profiles.biography" class="h2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="biography" type="text" placeholder="Biography"></textarea>
+        <textarea v-model="profiles.biography" class="h-52 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="biography" type="text" placeholder="Biography"></textarea>
       </div>
 
       <div class="flex items-center justify-center">
@@ -61,12 +72,6 @@ export default Vue.extend({
     async save (): Promise<void> {
       const retorno = await this.$axios.post('profiles', this.profiles)
       console.log(retorno)
-    },
-
-    total (count: number): void {
-      this.profiles = []
-      this.count = count
-      this.get(this.count)
     },
   },
 })

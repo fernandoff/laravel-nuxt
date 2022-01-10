@@ -15,11 +15,12 @@ class CreatePortfolio extends Migration
     {
         Schema::create('portfolios', function (Blueprint $table) {
             $table->id();
-            $table->string('company');
-            $table->string('role');
+            $table->string('company')->nullable();
+            $table->text('company_logo')->nullable();
+            $table->string('role')->nullable();
             $table->string('description')->nullable();
-            $table->date('start');
-            $table->date('end');
+            $table->date('start')->nullable();
+            $table->date('end')->nullable();
             $table->timestamps();
         });
     }

@@ -21,11 +21,15 @@
       </div>
     </div>
 
-    <ul v-if="users.length === 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
-      <contact-card-skeleton v-for="i in 9" :key="`skel-${i}`" />
+    <ul v-if="profile.name" class="mx-auto flex max-w-3xl bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
+      <profile-card :profile="profile"/>
     </ul>
-    <ul v-if="users.length > 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
-      <contact-card v-for="(user, index) in users" :key="index" :user="user" />
+
+    <ul v-if="portfolios.length > 0" class="grid grid-cols-1 gap-6 bg-gray-100 rounded p-8 w-full sm:grid-cols-2 lg:grid-cols-3">
+      <portfolio-card
+        v-for="(portfolio, index) in portfolios"
+        :key="index"
+        :portfolio="portfolio" />
     </ul>
 
   </div>
@@ -33,32 +37,36 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { Users } from '@/types/api'
+import { Portfolios, Users } from '@/types/api'
+import { Profile } from '@/types/api'
 export default Vue.extend({
   data () {
     const users:Users = []
     const count:number = 4
+    const portfolios:Portfolios = []
+    const profile:Profile = {}
 
     return {
+      profile,
+      portfolios,
       users,
       count,
     }
   },
   mounted () {
-    this.get(this.count)
-    console.log('test')
+    this.getPortfolios(this.count)
+    this.getProfile()
   },
   methods: {
-    async get (count: number): Promise<void> {
-      await this.$sleep(2000)
-      this.users = (
-        await this.$axios.get('example', { params: { count } })
-      ).data.data as Users
+    async getPortfolios (count: number): Promise<void> {
+      this.portfolios = (
+        await this.$axios.get('portfolios', { params: { count } })
+      ).data.data.data as Portfolios
     },
-    total (count: number): void {
-      this.users = []
-      this.count = count
-      this.get(this.count)
+    async getProfile (): Promise<void> {
+      this.profile = (
+        await this.$axios.get('profiles')
+      ).data.data.data[0] as Profile
     },
   },
 })
