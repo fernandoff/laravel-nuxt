@@ -18,7 +18,7 @@ class PortfoliosController extends Controller
      */
     public function index(): Response|JsonResponse
     {
-        return $this->render(Portfolio::paginate());
+        return $this->render(Portfolio::orderBy("start", "desc")->paginate());
     }
 
     /**

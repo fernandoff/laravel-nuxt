@@ -61,8 +61,11 @@
           </div>
 
           <div class="w-full flex items-center justify-center mt-5">
-            <button @click="addExperience" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+            <button @click="addExperience" class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
               Save Experience
+            </button>
+            <button @click="clearForm" class="ml-4 bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+              Clear Form / New
             </button>
           </div>
 
@@ -115,6 +118,9 @@ export default Vue.extend({
     this.get(this.count)
   },
   methods: {
+    clearForm () {
+      this.currentPortfolio = {}
+    },
 
     async deletePortfolio (portfolio: any) {
       if (window.confirm('Delete portfolio from company ' + portfolio.company + '?')) {
