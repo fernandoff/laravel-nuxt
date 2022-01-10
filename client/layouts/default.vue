@@ -1,6 +1,11 @@
 <template>
-  <div class="flex items-center justify-center">
-    <Nuxt />
+  <div>
+    <div class="flex items-center justify-center">
+
+    </div>
+    <div class="flex items-center justify-center">
+      <Nuxt />
+    </div>
   </div>
 </template>
 

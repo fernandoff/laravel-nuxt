@@ -27,3 +27,23 @@ export interface User {
 }
 
 export type Users = Array<User>
+
+// PROFILE
+export interface Profile {
+  name: string
+  biography: string
+}
+
+export type Profiles = Array<Profile>
+
+// PORTFOLIOS
+export interface Portfolio {
+  id?: number,
+  company?: string
+  role?: string
+  description?: string
+  start?: Date | null
+  end?: Date | null
+}
+
+export type Portfolios = Array<Portfolio>

@@ -14,8 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('profiles', '\App\Http\Controllers\ProfilesController');
+Route::resource('portfolios', '\App\Http\Controllers\PortfoliosController');
+
+
 Route::get('/', [Controller::class, 'routes'])
     ->name('route information')
     ->withoutMiddleware('api');
+
 Route::get('/example', [Controller::class, 'example'])->name('example route');
+
 Route::get('/error', [Controller::class, 'error'])->name('error route');
